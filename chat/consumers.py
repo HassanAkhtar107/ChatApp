@@ -6,6 +6,7 @@ from .models import Message
 import firebase_admin
 from firebase_admin import messaging
 from asgiref.sync import sync_to_async
+from users.models import FCMDevice
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -81,7 +82,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def get_fcm_token(self, user_id):
-        from users.models import FCMDevice
         try:
             device = FCMDevice.objects.get(user_id=user_id)
             return device.token
