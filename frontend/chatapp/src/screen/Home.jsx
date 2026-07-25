@@ -44,14 +44,14 @@ export default function Home({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
 
-  // ── Load logged-in user info once ─────────────────────────────────────────
+  // ── Load logged-in user info once 
   useEffect(() => {
     AsyncStorage.getItem('userInfo').then(info => {
       if (info) setUser(JSON.parse(info));
     });
   }, []);
 
-  // ── Send FCM Token to Backend ─────────────────────────────────────────────
+  // ── Send FCM Token to Backend 
   useEffect(() => {
     const sendFcmToken = async () => {
       try {
@@ -70,7 +70,7 @@ export default function Home({ navigation }) {
     sendFcmToken();
   }, []);
 
-  // ── Fetch registered users from backend ───────────────────────────────────
+  // ── Fetch registered users from backend 
   const fetchUsers = useCallback(async (isRefresh = false) => {
     if (isRefresh) setRefreshing(true);
     else setLoading(true);
@@ -92,7 +92,7 @@ export default function Home({ navigation }) {
 
   useEffect(() => { fetchUsers(); }, [fetchUsers]);
 
-  // ── Search filter ──────────────────────────────────────────────────────────
+  // ── Search filter
   useEffect(() => {
     const q = search.toLowerCase().trim();
     setFiltered(
@@ -101,19 +101,19 @@ export default function Home({ navigation }) {
     );
   }, [search, users]);
 
-  // ── Logout ─────────────────────────────────────────────────────────────────
+  // ── Logout
   const handleLogout = async () => {
     await AsyncStorage.removeItem('authToken');
     await AsyncStorage.removeItem('userInfo');
     navigation.replace('Login');
   };
 
-  // ── Navigate to Chat ───────────────────────────────────────────────────────
+  // ── Navigate to Chat
   const openChat = (otherUser) => {
     navigation.navigate('Chat', { otherUser });
   };
 
-  // ── Render a single user card ──────────────────────────────────────────────
+  // ── Render a single user card
   const renderUser = ({ item, index }) => {
     const bg = avatarColor(item.name);
     const ini = initials(item.name);
@@ -142,7 +142,7 @@ export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
 
-      {/* ── Top Bar ─────────────────────────────────────────────────────── */}
+      {/* ── Top Bar */}
       <View style={styles.topBar}>
         <View style={styles.topBarLeft}>
           <View style={[styles.selfAvatar, { backgroundColor: avatarColor(user?.name || 'U') }]}>
@@ -160,7 +160,7 @@ export default function Home({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      {/* ── Section Title ───────────────────────────────────────────────── */}
+      {/* ── Section Title */}
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>People</Text>
         <View style={styles.countBadge}>
@@ -168,7 +168,7 @@ export default function Home({ navigation }) {
         </View>
       </View>
 
-      {/* ── Search Bar ──────────────────────────────────────────────────── */}
+      {/* ── Search Bar */}
       <View style={styles.searchWrap}>
         <Text style={styles.searchIcon}>🔍</Text>
         <TextInput
@@ -186,7 +186,7 @@ export default function Home({ navigation }) {
         )}
       </View>
 
-      {/* ── Content ─────────────────────────────────────────────────────── */}
+      {/* ── Content */}
       {loading ? (
         <View style={styles.centered}>
           <ActivityIndicator size="large" color="#7C3AED" />
@@ -231,7 +231,7 @@ export default function Home({ navigation }) {
   );
 }
 
-// ─── Styles ───────────────────────────────────────────────────────────────────
+// ─── Styles 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
