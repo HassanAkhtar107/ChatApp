@@ -101,14 +101,12 @@ export default function Home({ navigation }) {
     );
   }, [search, users]);
 
-  // ── Logout
   const handleLogout = async () => {
     await AsyncStorage.removeItem('authToken');
     await AsyncStorage.removeItem('userInfo');
     navigation.replace('Login');
   };
 
-  // ── Navigate to Chat
   const openChat = (otherUser) => {
     navigation.navigate('Chat', { otherUser });
   };
