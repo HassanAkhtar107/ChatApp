@@ -101,14 +101,12 @@ export default function Home({ navigation }) {
     );
   }, [search, users]);
 
-  // ── Logout
   const handleLogout = async () => {
     await AsyncStorage.removeItem('authToken');
     await AsyncStorage.removeItem('userInfo');
     navigation.replace('Login');
   };
 
-  // ── Navigate to Chat
   const openChat = (otherUser) => {
     navigation.navigate('Chat', { otherUser });
   };
@@ -231,14 +229,11 @@ export default function Home({ navigation }) {
   );
 }
 
-// ─── Styles 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0F0F1A',
   },
-
-  // Top bar
   topBar: {
     flexDirection: 'row',
     alignItems: 'center',
