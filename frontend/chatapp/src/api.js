@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-// Replace with your machine's local IP (e.g. 10.0.2.2 for Android Emulator)
+//10.0.2.2 for Android Emulator
+//IP address s used for android physical device
+//localhost use for iphone
 export const BASE_URL = 'http://localhost:8000';
 
 const api = axios.create({
