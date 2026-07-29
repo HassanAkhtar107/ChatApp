@@ -3,7 +3,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from django.contrib.auth.models import User
 from .models import Message
-import firebase_admin
+# pyrefly: ignore [missing-import]
 from firebase_admin import messaging
 from asgiref.sync import sync_to_async
 from users.models import FCMDevice
