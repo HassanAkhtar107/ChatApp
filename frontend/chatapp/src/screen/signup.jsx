@@ -11,7 +11,6 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../api';
 
 export default function Signup({ navigation }) {
@@ -37,8 +36,6 @@ export default function Signup({ navigation }) {
     setLoading(true);
     try {
       const res = await api.post('/api/signup/', { name, email, password });
-      // await AsyncStorage.setItem('authToken', res.data.token);
-      // await AsyncStorage.setItem('userInfo', JSON.stringify(res.data.user));
       navigation.replace('Login');
     } catch (err) {
       const data = err.response?.data;
@@ -55,7 +52,6 @@ export default function Signup({ navigation }) {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-        {/* Header */}
         <View style={styles.header}>
           <View style={styles.logoCircle}>
             <Text style={styles.logoText}>💬</Text>
@@ -129,7 +125,6 @@ export default function Signup({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        {/* Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already have an account? </Text>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
